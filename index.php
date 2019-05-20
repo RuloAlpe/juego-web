@@ -8,5 +8,7 @@
 </head>
 <body>
   
+  <script src="js/buclePrincipal.js"></script>
+  <script src="js/inicio.js"></script>
 </body>
 </html>
