@@ -30,6 +30,7 @@ var buclePrincipal = {
   },
 
   actualizar: function(registroTemporal){
+    teclado.reiniciar();
     buclePrincipal.aps++;
   },
 
