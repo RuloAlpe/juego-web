@@ -5,8 +5,8 @@ var mando = {
 
   iniciar: function(){
     if(mando.eventosDisponibles){
-      window.addEventListener('gamepadconnected', mando.conectar;
-      window.addEventListener('gamepadisconnected', mando.desconectado)
+      window.addEventListener('gamepadconnected', mando.conectar);
+      window.addEventListener('gamepadisconnected', mando.desconectado);
     }else{
       mando.actualizar;
     }
@@ -22,10 +22,41 @@ var mando = {
   },
 
   actualizar:function(){
+    if(!mando.eventosDisponibles){
+      mandos = null;
 
+      try{
+        mandos = navigator.getGamepads ? navigator.getGamepads() : (navigator.webKitGetGamepad ? navigator.webKitGetGamepad : []);
+        mando.objeto = mandos[0];
+
+        if(!mando.conectado){
+          mando.conectado = true;
+          mando.identificar();
+        }
+      }catch(error){
+        console.log(error.message);
+      }
+    }
+
+    if(!mando.objeto){
+      return;
+    }
+
+    if(mando.botonPulsado(mando.objeto.buttons[0])){
+      console.log("Mando: A")
+    }
+  },
+
+  botonPulsado: function(boton){
+    if(typeof(boton) == "object"){
+      return boton.pressed;
+    }
+
+    return boton == 1.0;
   },
 
   identificar:function(){
-
+    console.log("Mando conectado en el indice %d. %s, %d botones, %d ejes.",
+    mando.objeto.index, mando.objeto.id, mando.objeto.buttons.length, mando.objeto.axes.length);
   }
 }
