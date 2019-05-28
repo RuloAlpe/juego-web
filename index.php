@@ -10,6 +10,7 @@
   
   <div id="juego"></div>
 
+  <script src="js/ajax.js"></script>
   <script src="js/teclado.js"></script>
   <script src="js/rectangulo.js"></script>
   <script src="js/mando.js"></script>
