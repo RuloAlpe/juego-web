@@ -15,10 +15,13 @@ function PaletaSprites(datosSprite){
   this.sprites = [];
   for(s = 0; s < totalSrites; s++){
     var idActualSobreZero = this.primerSpriteSobreUno - 1 + s;
-    this.sprites.push(new Sprite(this.rutaImagen, idActualSobreZero, ));
+    this.sprites.push(new Sprite(this.rutaImagen, idActualSobreZero, this.obtenerPosicionDesdeSprite(idActualSobreZero)));
   }
 }
 
 PaletaSprites.prototypes.obtenerPosicionDesdeSprite = function(idSpriteSobreZero){
-  var y = idSpriteSobreZero / this.anchoImagenMedidoEnSprites;
+  var y = Math.floor(idSpriteSobreZero / this.anchoImagenMedidoEnSprites);
+  var x = idSpriteSobreZero % this.anchoImagenMedidoEnSprites;
+
+  return new Punto(x * this.anchoSprites, y * this.altoSprites);
 }
